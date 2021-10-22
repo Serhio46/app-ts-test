@@ -23,19 +23,34 @@ const LoginForm: FC = () => {
 	}
 
 	return (
-
-
-		<form className='form' onSubmit={handleSubmit(submitForm)}>
-			{errors.userName && <p style={{ color: "red" }}>{errors.userName.message}</p>}
-			<input type="text" {...register("userName", { required: "Required field" })} />
-			{errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
-			<input type="text"{...register("email", { required: "Required field" })} />
-			{errors.password && <p style={{ color: "red" }}>{errors.password.message}</p>}
-			<input type="text" {...register("password", { required: "Required field" })} />
-			{errors.confirmPassword && <p style={{ color: "red" }}>"Password should match "</p>}
-			<input type="text" {...register("confirmPassword", { required: "Required field" })} />
-			<button>Jnghfdbnm</button>
-		</form>
+		<Box onSubmit={handleSubmit(submitForm)}
+			component="form"
+			sx={{
+				width: 400,
+				height: 400,
+				bgcolor: "lightslategrey",
+				alignItems: 'center',
+				justifyContent: 'center',
+				p: "15px",
+				borderRadius: "15px"
+			}}
+			noValidate
+			autoComplete="off"
+		>
+			<Stack spacing={4} sx={{ mb: "30px" }} >
+				{errors.userName && <p style={{ color: "red" }}>{errors.userName.message}</p>}
+				<TextField id="userName" sx={{ bgcolor: "white" }} label="User Name" variant="outlined" {...register("userName", { required: "Required field" })} />
+				{errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
+				<TextField id="email" sx={{ bgcolor: "white" }} label="email" variant="outlined" type="email" {...register("email", { required: "Required field" })} />
+				{errors.password && <p style={{ color: "red" }}>{errors.password.message}</p>}
+				<TextField id="password" sx={{ bgcolor: "white" }} label="password" variant="outlined" type="password" {...register("password", { required: "Required field" })} />
+				{errors.confirmPassword && <p style={{ color: "red" }}>"Password should match "</p>}
+				<TextField id="confirmpassword" sx={{ bgcolor: "white" }} label="confirmpassword" variant="outlined" type="password" {...register("confirmPassword", { required: "Required field" })} />
+			</Stack>
+			<Grid container sx={{ alignItems: 'center', justifyContent: 'center' }}>
+				<Grid item ><Button variant="contained" type='submit'> Submit</Button></Grid>
+			</Grid>
+		</Box >
 
 	);
 
