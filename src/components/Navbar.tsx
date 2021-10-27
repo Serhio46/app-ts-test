@@ -3,20 +3,21 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { FC } from "react";
 import { useDispatch } from 'react-redux';
+import { AuthActionCreators } from "../store/reducers/auth/authActions";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 
 
 
-interface NavbarProps {
-	isAuth: boolean;
-}
 
-const Navbar: FC<NavbarProps> = ({ isAuth }) => {
 
+const Navbar: FC = () => {
+
+	const { isAuth, user } = useTypedSelector(({ authReducer }) => authReducer);
 	const dispatch = useDispatch();
 
-	/* const logIn = () => {
-		dispatch()
-	} */
+	const logOut = () => {
+		dispatch(AuthActionCreators.logOut());
+	}
 
 	return (
 		<AppBar
@@ -37,10 +38,10 @@ const Navbar: FC<NavbarProps> = ({ isAuth }) => {
 							component='span'
 							sx={{ mr: '10px' }}
 						>
-							Vasilyi
+							{user.username}
 						</Typography>
 						<IconButton
-							onClick={() => console.log('LogOut')}
+							onClick={logOut}
 							color='inherit'
 						>
 							<LogoutIcon />

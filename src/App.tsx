@@ -1,17 +1,26 @@
 
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import AppRouter from './components/AppRouter';
 import Navbar from './components/Navbar';
-import { useTypedSelector } from "./hooks/useTypedSelector";
+import { useDispatch } from 'react-redux';
+import { AuthActionCreators } from "./store/reducers/auth/authActions";
+import { IUser } from "./models/IUser"
 
 const App: FC = () => {
 
-	const { isAuth } = useTypedSelector(({ authReducer }) => authReducer);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (localStorage.getItem('auth')) {
+			dispatch(AuthActionCreators.setUser({ username: localStorage.getItem('username' || '') } as IUser));
+			dispatch(AuthActionCreators.setIsAuth(true))
+		}
+	}, [])
 
 	return (
 		<>
-			<Navbar isAuth={isAuth} />
-			<AppRouter isAuth={isAuth} />
+			<Navbar />
+			<AppRouter />
 		</>
 	);
 }

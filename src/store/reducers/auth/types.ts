@@ -1,18 +1,39 @@
+import { IUser } from "../../../models/IUser";
+
 export interface AuthReducerState {
-	isAuth: boolean
+	isAuth: boolean;
+	user: IUser;
+	isLoading: boolean;
+	error: string;
 };
 
 export enum ActionAuthTypes {
 	SET_IS_AUTH = 'SET_IS_AUTH',
-	REMOVE_IS_AUTH = 'REMOVE_IS_AUTH',
+	SET_ERROR = 'SET_ERROR',
+	SET_USER = 'SET_USER',
+	SET_ISLOADING = 'SET_ISLOADING',
 }
 
-interface SetIsAuth {
+export interface SetIsAuthAction {
 	type: ActionAuthTypes.SET_IS_AUTH,
+	payload: boolean,
 }
 
-interface RemoveIsAuth {
-	type: ActionAuthTypes.REMOVE_IS_AUTH,
+export interface SetErrorAction {
+	type: ActionAuthTypes.SET_ERROR,
+	payload: string
+}
+export interface SetUserAction {
+	type: ActionAuthTypes.SET_USER,
+	payload: IUser
+}
+export interface SetIsLoadingAction {
+	type: ActionAuthTypes.SET_ISLOADING,
+	payload: boolean,
 }
 
-export type AuthActions = SetIsAuth | RemoveIsAuth;
+export type AuthActions =
+	SetIsAuthAction |
+	SetErrorAction |
+	SetUserAction |
+	SetIsLoadingAction;

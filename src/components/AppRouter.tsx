@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { Route, Switch, Redirect } from "react-router";
 import { privateRoutes, publicRoutes, RoutesName } from "../routes";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 
-interface AppRouterProps {
-	isAuth: boolean;
-}
 
-const AppRouter: FC<AppRouterProps> = ({ isAuth }) => {
+const AppRouter: FC = () => {
+
+	const { isAuth } = useTypedSelector(({ authReducer }) => authReducer);
+
 	return (
 		isAuth ?
 			<Switch>
