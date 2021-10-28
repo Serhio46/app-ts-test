@@ -12,3 +12,8 @@ html, body {
 .form input {
 	margin-bottom: 10px;
 }
+.login{
+	cursor: pointer;
+	color: #ffff !important;
+	text-decoration: none
+}

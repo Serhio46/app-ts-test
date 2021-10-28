@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import { Grid } from '@mui/material';
 import React, { FC } from 'react';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/LogInForm';
 
 const Login: FC = () => {
 

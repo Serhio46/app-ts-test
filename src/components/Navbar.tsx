@@ -5,6 +5,7 @@ import { FC } from "react";
 import { useDispatch } from 'react-redux';
 import { AuthActionCreators } from "../store/reducers/auth/authActions";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import { Link } from 'react-router-dom';
 
 
 
@@ -49,12 +50,23 @@ const Navbar: FC = () => {
 					</>
 
 					:
-					<IconButton
-						onClick={() => console.log('LogIn')}
-						color='inherit'
-					>
-						<LoginIcon />
-					</IconButton>
+					<>
+						<Link className='login' to='/signin'>
+							<Typography
+								variant='h6'
+								component='span'
+								sx={{ mr: '10px' }}
+							>
+								Sign In
+							</Typography>
+						</Link>
+						<IconButton
+							onClick={() => console.log('LogIn')}
+							color='inherit'
+						>
+							<LoginIcon />
+						</IconButton>
+					</>
 				}
 			</Toolbar>
 		</AppBar>
